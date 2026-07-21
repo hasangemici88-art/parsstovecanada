@@ -12,11 +12,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const image = `${protocol}://${host}/og.png`;
   return {
-    title: "ParsStove Canada | Stoves & Fireplaces",
-    description: "High-efficiency stoves, fireplaces and professional installation for Canadian homes.",
+    title: "ParsStove Canada | Three-Sided Pellet Stoves",
+    description: "Panoramic three-sided pellet stoves, renewable pine pellet heat and installation guidance for Canadian homes.",
     openGraph: {
-      title: "ParsStove Canada | Stoves & Fireplaces",
-      description: "Warmth, engineered for Canadian winters.",
+      title: "ParsStove Canada | Three-Sided Pellet Stoves",
+      description: "See the fire. Feel the difference.",
       images: [{ url: image, width: 1731, height: 909, alt: "ParsStove Canada — Warmth, engineered for Canadian winters." }],
     },
     twitter: { card: "summary_large_image", images: [image] },

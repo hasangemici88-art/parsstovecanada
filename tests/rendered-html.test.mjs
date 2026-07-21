@@ -18,8 +18,8 @@ test("server-renders the ParsStove landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /ParsStove Canada/);
-  assert.match(html, /Warmth, engineered for/);
-  assert.match(html, /Find your perfect fire/);
+  assert.match(html, /See the fire/);
+  assert.match(html, /One flame\. Three expressions/);
   assert.match(html, /Request my consultation/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });

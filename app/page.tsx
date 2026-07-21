@@ -3,9 +3,9 @@
 import { motion, MotionConfig } from "motion/react";
 
 const products = [
-  { name: "Ashwood 700", type: "Wood stove", output: "Up to 2,100 sq. ft.", tone: "ashwood" },
-  { name: "Emberline 50", type: "Gas fireplace", output: "38,000 BTU", tone: "emberline" },
-  { name: "Northstar Insert", type: "Wood insert", output: "Up to 1,800 sq. ft.", tone: "northstar" },
+  { name: "Three-Sided Pellet Stove", type: "Signature collection", output: "Panoramic flame view", image: "/pellet-stove-classic.jpg" },
+  { name: "Modern Pellet Stove", type: "Contemporary collection", output: "Compact, efficient heat", image: "/pellet-stove-modern.jpg" },
+  { name: "Cabin Pellet Stove", type: "Lodge collection", output: "Made for winter rooms", image: "/pellet-stove-cabin.jpg" },
 ];
 
 const steps = [
@@ -30,7 +30,7 @@ export default function Home() {
             <span>ParsStove <small>CANADA</small></span>
           </a>
           <nav aria-label="Primary navigation">
-            <a href="#collection">Collection</a>
+            <a href="#collection">Pellet stoves</a>
             <a href="#process">Installation</a>
             <a href="#about">Why ParsStove</a>
           </nav>
@@ -39,39 +39,34 @@ export default function Home() {
 
         <section className="hero" id="top">
           <div className="hero-copy">
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }} className="eyebrow">Built for the long winter</motion.p>
-            <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>Warmth, engineered for <em>Canadian winters.</em></motion.h1>
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.7 }} className="hero-lede">High-efficiency stoves and fireplaces, thoughtfully selected and professionally installed for lasting comfort.</motion.p>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }} className="eyebrow">Pellet heat, beautifully reimagined</motion.p>
+            <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>See the fire.<br/><em>Feel the difference.</em></motion.h1>
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.7 }} className="hero-lede">Pars three-sided pellet stoves bring a panoramic flame, efficient warmth and remarkable fuel flexibility to Canadian homes.</motion.p>
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.6 }} className="hero-actions">
               <a className="button button-primary" href="#collection">Explore the collection <span>→</span></a>
               <a className="text-link" href="#quote">Plan your project <span>↗</span></a>
             </motion.div>
           </div>
-          <motion.div className="hero-visual" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9 }} aria-label="Modern freestanding stove in a warm lodge setting" role="img">
-            <div className="sun-glow" />
-            <div className="stove-pipe" />
-            <div className="stove">
-              <div className="stove-door"><i className="flame one"/><i className="flame two"/><i className="flame three"/></div>
-              <div className="stove-handle" />
-            </div>
-            <div className="hearth" />
-            <div className="visual-note"><strong>HEAT WITH CONFIDENCE</strong><span>Certified systems • Expert guidance</span></div>
+          <motion.div className="hero-visual photo-hero" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9 }}>
+            <img src="/pellet-stove-cabin.jpg" alt="Pars pellet stove warming a wood-lined Canadian cabin" />
+            <div className="hero-badge"><strong>360°</strong><span>Panoramic<br/>flame presence</span></div>
+            <div className="visual-note"><strong>DESIGNED AROUND THE FLAME</strong><span>Pellet efficiency • Wood-fire flexibility</span></div>
           </motion.div>
         </section>
 
         <section className="trust-strip" aria-label="Service highlights">
-          <span>CSA-certified options</span><span>Energy-efficient heating</span><span>Professional installation</span><span>Canadian winter ready</span>
+          <span>Three-sided flame view</span><span>Renewable pine pellets</span><span>Pellet + wood flexibility</span><span>Installation guidance</span>
         </section>
 
         <motion.section className="collection section" id="collection" variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.15 }}>
           <div className="section-heading">
-            <div><p className="eyebrow">Our collection</p><h2>Find your perfect fire.</h2></div>
-            <p>From modern freestanding stoves to seamless fireplace inserts, each model is chosen for reliable performance and timeless design.</p>
+            <div><p className="eyebrow">The Pars collection</p><h2>One flame. Three expressions.</h2></div>
+            <p>Explore pellet stove configurations shaped for contemporary homes, weekend cabins and character-rich interiors.</p>
           </div>
           <div className="product-grid">
-            {products.map((product, index) => (
+            {products.map((product) => (
               <motion.article className="product-card" key={product.name} whileHover={{ y: -6 }} transition={{ type: "spring", stiffness: 280, damping: 24 }}>
-                <div className={`product-visual ${product.tone}`}><div className="mini-pipe"/><div className="mini-stove"><span/></div><b>0{index + 1}</b></div>
+                <div className="product-visual product-photo"><img src={product.image} alt={product.name} loading="lazy" /></div>
                 <div className="product-info"><p>{product.type}</p><h3>{product.name}</h3><div><span>{product.output}</span><a href="#quote" aria-label={`Ask about ${product.name}`}>↗</a></div></div>
               </motion.article>
             ))}
@@ -80,12 +75,12 @@ export default function Home() {
 
         <section className="story section" id="about">
           <motion.div className="story-panel" variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}>
-            <p className="eyebrow light">The ParsStove difference</p>
-            <h2>Better warmth begins with better guidance.</h2>
-            <p>We make home heating feel clear—from choosing the right output to planning a safe, beautiful installation. You get practical advice, well-built products and support beyond the first fire.</p>
-            <div className="story-stats"><div><strong>4-season</strong><span>local support</span></div><div><strong>One team</strong><span>from plan to flame</span></div></div>
+            <p className="eyebrow light">Why pellet heat</p>
+            <h2>Less waste. More comfort. A better ritual.</h2>
+            <p>Natural pine pellets turn renewable material into consistent, convenient heat. Pars adds a distinctive three-sided view and the flexibility to enjoy traditional wood when you choose.</p>
+            <div className="story-stats"><div><strong>100% pine</strong><span>renewable pellet fuel</span></div><div><strong>Dual-fuel</strong><span>pellet and wood capable</span></div></div>
           </motion.div>
-          <div className="story-image" aria-hidden="true"><div className="log log-a"/><div className="log log-b"/><div className="story-fire"/></div>
+          <div className="story-image real-story"><img src="/pars-pellet-system.png" alt="Pars pellet heating system" loading="lazy" /></div>
         </section>
 
         <motion.section className="process section" id="process" variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.12 }}>
@@ -95,10 +90,10 @@ export default function Home() {
 
         <section className="quote section" id="quote">
           <div className="quote-copy"><p className="eyebrow light">Start your project</p><h2>Let&apos;s make winter feel different.</h2><p>Tell us a little about your space. We&apos;ll help you identify the right heating solution and next step.</p></div>
-          <form className="quote-form" action="mailto:info@parsstove.ca" method="post" encType="text/plain">
+          <form className="quote-form" action="mailto:info@parssttove.com" method="post" encType="text/plain">
             <label>Full name<input name="name" autoComplete="name" required placeholder="Your name" /></label>
             <label>Email address<input type="email" name="email" autoComplete="email" required placeholder="you@example.com" /></label>
-            <label>What are you looking for?<select name="project" defaultValue=""><option value="" disabled>Select a project type</option><option>Wood stove</option><option>Gas fireplace</option><option>Fireplace insert</option><option>Not sure yet</option></select></label>
+            <label>What are you looking for?<select name="project" defaultValue=""><option value="" disabled>Select a project type</option><option>Three-sided pellet stove</option><option>Pellet fuel</option><option>Installation guidance</option><option>Not sure yet</option></select></label>
             <label>Postal code<input name="postal-code" autoComplete="postal-code" placeholder="A1A 1A1" /></label>
             <button className="button button-amber" type="submit">Request my consultation <span>→</span></button>
             <small>By submitting, you agree to be contacted about your project.</small>
