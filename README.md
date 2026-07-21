@@ -13,3 +13,9 @@ npm run build
 ```
 
 The site uses Next.js, vinext, Motion, and Cloudflare-compatible output.
+
+Deploy the validated build to the connected Cloudflare account with:
+
+```bash
+npm run deploy:cloudflare
+```
