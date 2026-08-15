@@ -2,10 +2,19 @@
 
 import { useState } from "react";
 
+// Real product — the only model with verified specs from the manufacturer
+// (parsstove.com / Erzurum, Turkey) as of 2026-08-15. Price is withheld
+// pending a Canada-specific decision; do not fabricate a CAD figure.
 const products = [
-  { name: "Pars P8 Compact", heat: "27,000 BTU", area: "650–970 sq. ft.", price: "$3,499 CAD", badge: "Best Seller", tone: "graphite" },
-  { name: "Pars P12 Vision", heat: "41,000 BTU", area: "970–1,400 sq. ft.", price: "$4,599 CAD", badge: "New", tone: "sand" },
-  { name: "Pars P18 Hydro", heat: "61,000 BTU", area: "1,500–2,050 sq. ft.", price: "$6,299 CAD", badge: "Hydronic", tone: "forest" },
+  {
+    name: "Pars Classic Pellet Stove",
+    heat: "1–1.5 kg pellets/hr",
+    area: "320–750 sq. ft. (30–70 m²)",
+    price: "Contact us for pricing",
+    badge: "Flagship Model",
+    tone: "graphite",
+    image: "/products/pars-stove-1/photo-02.png",
+  },
 ];
 
 const faqs = [
@@ -19,7 +28,10 @@ function Flame() {
   return <span className="flame" aria-hidden="true"><i /></span>;
 }
 
-function Stove({ tone = "graphite" }: { tone?: string }) {
+function Stove({ tone = "graphite", src }: { tone?: string; src?: string }) {
+  if (src) {
+    return <div className={`stove ${tone}`}><img src={src} alt="" className="stove-photo" /></div>;
+  }
   return <div className={`stove ${tone}`} aria-hidden="true"><div className="pipe"/><div className="stove-top"/><div className="stove-body"><div className="window"><Flame/><span className="ember e1"/><span className="ember e2"/></div><div className="control"/></div><div className="feet"><i/><i/></div></div>;
 }
 
@@ -48,7 +60,7 @@ export default function Home() {
           <div className="hero-proof"><div><b>4.9</b><span className="stars">★★★★★</span><small>1,200+ happy homeowners</small></div><i/><div><b>2 years</b><small>Manufacturer warranty</small></div><i/><div><b>92%+</b><small>High efficiency</small></div></div>
         </div>
         <div className="hero-visual">
-          <div className="warm-orb"/><div className="floor-shadow"/><Stove/>
+          <div className="warm-orb"/><div className="floor-shadow"/><Stove src="/products/pars-stove-1/photo-07.png"/>
           <div className="float-card fc1"><span>♨</span><div><b>High Efficiency</b><small>More heat from less fuel</small></div></div>
           <div className="float-card fc2"><span>✓</span><div><b>Qualified Installation</b><small>Trusted local professionals</small></div></div>
           <span className="spark s1">✦</span><span className="spark s2">·</span><span className="spark s3">✦</span>
@@ -62,7 +74,7 @@ export default function Home() {
 
       <section className="products" id="urunler">
         <div className="section-head"><div><span className="kicker">FEATURED MODELS</span><h2>Canadian favourites</h2></div><a href="#urunler">View all <span>→</span></a></div>
-        <div className="product-grid">{products.map((p) => <article className="product" key={p.name}><div className="product-image"><span className="badge">{p.badge}</span><button aria-label={`Add ${p.name} to favourites`}>♡</button><Stove tone={p.tone}/></div><div className="product-info"><div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div><h3>{p.name}</h3><div className="price-row"><div><small>Starting at</small><b>{p.price}</b></div><button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button></div></div></article>)}</div>
+        <div className="product-grid">{products.map((p) => <article className="product" key={p.name}><div className="product-image"><span className="badge">{p.badge}</span><button aria-label={`Add ${p.name} to favourites`}>♡</button><Stove tone={p.tone} src={p.image}/></div><div className="product-info"><div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div><h3>{p.name}</h3><div className="price-row"><div><small>Starting at</small><b>{p.price}</b></div><button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button></div></div></article>)}</div>
       </section>
 
       <section className="benefits" id="neden"><div className="benefit-visual"><div className="lounge"><span className="plant">♧</span><div className="side-table"/><Stove tone="sand"/></div><div className="saving"><b>Up to 35%</b><span>fuel savings</span></div></div><div className="benefit-copy"><span className="kicker">WHY PELLET?</span><h2>A smarter way<br/><em>to stay warm.</em></h2><p>We bring together the warmth of a wood stove and the ease of modern technology. Simply set your preferred temperature.</p><ul><li><b>Automatic operation</b><span>Schedule it so your home is warm before you arrive.</span></li><li><b>Cleaner combustion</b><span>Lower emissions and renewable fuel options.</span></li><li><b>Long burn time</b><span>Enjoy 8–24 hours of steady heat from one fill.</span></li></ul><a href="#siparis" className="text-link">Explore pellet heating <span>→</span></a></div></section>
