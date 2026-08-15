@@ -5,16 +5,16 @@ import "./globals.css";
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pars Stove | Akıllı Pellet Sobaları",
-  description: "Yüksek verimli Pars pellet sobalarını online keşfedin; güvenli sipariş, hızlı teslimat ve uzman kurulum.",
+  title: "Pars Stove Canada | High-Efficiency Pellet Stoves",
+  description: "Shop high-efficiency Pars pellet stoves in Canada with secure ordering, regional delivery, and qualified installation support.",
   openGraph: {
-    title: "Pars Stove | Akıllı Pellet Sobaları",
-    description: "Doğanın sıcaklığı, akıllı konforla.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Pars Stove pellet sobası" }],
+    title: "Pars Stove Canada | High-Efficiency Pellet Stoves",
+    description: "Natural warmth. Smarter comfort.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Pars Stove pellet stove in a Canadian home" }],
   },
   twitter: { card: "summary_large_image", images: ["/og.png"] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="tr"><body className={geist.variable}>{children}</body></html>;
+  return <html lang="en-CA"><body className={geist.variable}>{children}</body></html>;
 }
