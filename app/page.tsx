@@ -5,6 +5,22 @@ import { useState } from "react";
 // Real product — the only model with verified specs from the manufacturer
 // (parsstove.com / Erzurum, Turkey) as of 2026-08-15. Price is withheld
 // pending a Canada-specific decision; do not fabricate a CAD figure.
+// All 11 real product photos (photo-01 excluded — it's a Turkish marketing
+// slide with parsstove.com branding baked in, not a clean product shot).
+const parsStove1Gallery = [
+  "/products/pars-stove-1/photo-02.png",
+  "/products/pars-stove-1/photo-03.png",
+  "/products/pars-stove-1/photo-04.png",
+  "/products/pars-stove-1/photo-05.png",
+  "/products/pars-stove-1/photo-06.png",
+  "/products/pars-stove-1/photo-07.png",
+  "/products/pars-stove-1/photo-08.png",
+  "/products/pars-stove-1/photo-09.png",
+  "/products/pars-stove-1/photo-10.png",
+  "/products/pars-stove-1/photo-11.png",
+  "/products/pars-stove-1/photo-12.png",
+];
+
 const products = [
   {
     name: "Pars Classic Pellet Stove",
@@ -13,7 +29,7 @@ const products = [
     price: "Contact us for pricing",
     badge: "Flagship Model",
     tone: "graphite",
-    image: "/products/pars-stove-1/photo-02.png",
+    gallery: parsStove1Gallery,
   },
 ];
 
@@ -39,6 +55,7 @@ export default function Home() {
   const [menu, setMenu] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const [cart, setCart] = useState(0);
+  const [activeImg, setActiveImg] = useState(products[0].gallery[0]);
 
   return (
     <main>
@@ -74,7 +91,7 @@ export default function Home() {
 
       <section className="products" id="urunler">
         <div className="section-head"><div><span className="kicker">FEATURED MODELS</span><h2>Canadian favourites</h2></div><a href="#urunler">View all <span>→</span></a></div>
-        <div className="product-grid">{products.map((p) => <article className="product" key={p.name}><div className="product-image"><span className="badge">{p.badge}</span><button aria-label={`Add ${p.name} to favourites`}>♡</button><Stove tone={p.tone} src={p.image}/></div><div className="product-info"><div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div><h3>{p.name}</h3><div className="price-row"><div><small>Starting at</small><b>{p.price}</b></div><button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button></div></div></article>)}</div>
+        <div className="product-grid">{products.map((p) => <article className="product" key={p.name}><div className="product-image"><span className="badge">{p.badge}</span><button aria-label={`Add ${p.name} to favourites`}>♡</button><img src={activeImg} alt={p.name} className="main-photo" /></div><div className="product-thumbs">{p.gallery.map((src, i) => <img key={src} src={src} alt={`${p.name} view ${i + 1}`} className={src === activeImg ? "active" : ""} onClick={() => setActiveImg(src)} />)}</div><div className="product-info"><div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div><h3>{p.name}</h3><div className="price-row"><div><small>Starting at</small><b>{p.price}</b></div><button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button></div></div></article>)}</div>
       </section>
 
       <section className="benefits" id="neden"><div className="benefit-visual"><div className="lounge"><span className="plant">♧</span><div className="side-table"/><Stove tone="sand"/></div><div className="saving"><b>Up to 35%</b><span>fuel savings</span></div></div><div className="benefit-copy"><span className="kicker">WHY PELLET?</span><h2>A smarter way<br/><em>to stay warm.</em></h2><p>We bring together the warmth of a wood stove and the ease of modern technology. Simply set your preferred temperature.</p><ul><li><b>Automatic operation</b><span>Schedule it so your home is warm before you arrive.</span></li><li><b>Cleaner combustion</b><span>Lower emissions and renewable fuel options.</span></li><li><b>Long burn time</b><span>Enjoy 8–24 hours of steady heat from one fill.</span></li></ul><a href="#siparis" className="text-link">Explore pellet heating <span>→</span></a></div></section>
