@@ -25,10 +25,74 @@ const heroSlides = [
   },
 ] as const;
 
+// Real product — the only model with verified specs from the manufacturer
+// (parsstove.com / Erzurum, Turkey) as of 2026-08-15. Price is withheld
+// pending a Canada-specific decision; do not fabricate a CAD figure.
+// All 11 real product photos (photo-01 excluded — it's a Turkish marketing
+// slide with parsstove.com branding baked in, not a clean product shot).
+const parsStove1Gallery = [
+  "/products/pars-stove-1/photo-02.png",
+  "/products/pars-stove-1/photo-03.png",
+  "/products/pars-stove-1/photo-04.png",
+  "/products/pars-stove-1/photo-05.png",
+  "/products/pars-stove-1/photo-06.png",
+  "/products/pars-stove-1/photo-07.png",
+  "/products/pars-stove-1/photo-08.png",
+  "/products/pars-stove-1/photo-09.png",
+  "/products/pars-stove-1/photo-10.png",
+  "/products/pars-stove-1/photo-11.png",
+  "/products/pars-stove-1/photo-12.png",
+];
+
+// The four models below only exist as placeholder listings on the source
+// site (no real specs, generic stock photos) — shown here as upcoming
+// additions to the lineup, not verified products. Do not add fake specs.
 const products = [
-  { name: "Pars P8 Compact", heat: "27,000 BTU", area: "650–970 sq. ft.", price: "$3,499 CAD", badge: "Best Seller", tone: "graphite" },
-  { name: "Pars P12 Vision", heat: "41,000 BTU", area: "970–1,400 sq. ft.", price: "$4,599 CAD", badge: "New", tone: "sand" },
-  { name: "Pars P18 Hydro", heat: "61,000 BTU", area: "1,500–2,050 sq. ft.", price: "$6,299 CAD", badge: "Hydronic", tone: "forest" },
+  {
+    name: "Pars Classic Pellet Stove",
+    heat: "1–1.5 kg pellets/hr",
+    area: "320–750 sq. ft. (30–70 m²)",
+    price: "Contact us for pricing",
+    badge: "Flagship Model",
+    tone: "graphite",
+    gallery: parsStove1Gallery,
+  },
+  {
+    name: "Pars Series II",
+    heat: "Specs coming soon",
+    area: "Details coming soon",
+    price: "Contact us for pricing",
+    badge: "Coming Soon",
+    tone: "sand",
+    gallery: ["/products/demo-2/photo-01.jpg", "/products/demo-2/photo-02.jpg"],
+  },
+  {
+    name: "Pars Series III",
+    heat: "Specs coming soon",
+    area: "Details coming soon",
+    price: "Contact us for pricing",
+    badge: "Coming Soon",
+    tone: "forest",
+    gallery: ["/products/demo-3/photo-01.jpg", "/products/demo-3/photo-02.jpg"],
+  },
+  {
+    name: "Pars Series IV",
+    heat: "Specs coming soon",
+    area: "Details coming soon",
+    price: "Contact us for pricing",
+    badge: "Coming Soon",
+    tone: "graphite",
+    gallery: ["/products/demo-4/photo-01.jpg", "/products/demo-4/photo-02.jpg"],
+  },
+  {
+    name: "Pars Fuel Test Unit",
+    heat: "Specs coming soon",
+    area: "Details coming soon",
+    price: "Contact us for pricing",
+    badge: "Coming Soon",
+    tone: "sand",
+    gallery: ["/products/yakit-test/photo-01.jpg"],
+  },
 ];
 
 const faqs = [
@@ -42,7 +106,10 @@ function Flame() {
   return <span className="flame" aria-hidden="true"><i /></span>;
 }
 
-function Stove({ tone = "graphite" }: { tone?: string }) {
+function Stove({ tone = "graphite", src }: { tone?: string; src?: string }) {
+  if (src) {
+    return <div className={`stove ${tone}`}><img src={src} alt="" className="stove-photo" /></div>;
+  }
   return <div className={`stove ${tone}`} aria-hidden="true"><div className="pipe"/><div className="stove-top"/><div className="stove-body"><div className="window"><Flame/><span className="ember e1"/><span className="ember e2"/></div><div className="control"/></div><div className="feet"><i/><i/></div></div>;
 }
 
@@ -121,6 +188,36 @@ function HeroCarousel() {
   );
 }
 
+type Product = (typeof products)[number];
+
+function ProductCard({ p, cart, setCart }: { p: Product; cart: number; setCart: (n: number) => void }) {
+  const [activeImg, setActiveImg] = useState(p.gallery[0]);
+  return (
+    <article className="product">
+      <div className="product-image">
+        <span className="badge">{p.badge}</span>
+        <button aria-label={`Add ${p.name} to favourites`}>♡</button>
+        <img src={activeImg} alt={p.name} className="main-photo" />
+      </div>
+      {p.gallery.length > 1 && (
+        <div className="product-thumbs">
+          {p.gallery.map((src, i) => (
+            <img key={src} src={src} alt={`${p.name} view ${i + 1}`} className={src === activeImg ? "active" : ""} onClick={() => setActiveImg(src)} />
+          ))}
+        </div>
+      )}
+      <div className="product-info">
+        <div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div>
+        <h3>{p.name}</h3>
+        <div className="price-row">
+          <div><small>Starting at</small><b>{p.price}</b></div>
+          <button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function Home() {
   const [menu, setMenu] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
@@ -146,7 +243,7 @@ export default function Home() {
 
       <section className="products" id="urunler">
         <div className="section-head"><div><span className="kicker">FEATURED MODELS</span><h2>Canadian favourites</h2></div><a href="#urunler">View all <span>→</span></a></div>
-        <div className="product-grid">{products.map((p) => <article className="product" key={p.name}><div className="product-image"><span className="badge">{p.badge}</span><button aria-label={`Add ${p.name} to favourites`}>♡</button><Stove tone={p.tone}/></div><div className="product-info"><div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div><h3>{p.name}</h3><div className="price-row"><div><small>Starting at</small><b>{p.price}</b></div><button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button></div></div></article>)}</div>
+        <div className="product-grid">{products.map((p) => <ProductCard key={p.name} p={p} cart={cart} setCart={setCart} />)}</div>
       </section>
 
       <section className="benefits" id="neden"><div className="benefit-visual"><div className="lounge"><span className="plant">♧</span><div className="side-table"/><Stove tone="sand"/></div><div className="saving"><b>Up to 35%</b><span>fuel savings</span></div></div><div className="benefit-copy"><span className="kicker">WHY PELLET?</span><h2>A smarter way<br/><em>to stay warm.</em></h2><p>We bring together the warmth of a wood stove and the ease of modern technology. Simply set your preferred temperature.</p><ul><li><b>Automatic operation</b><span>Schedule it so your home is warm before you arrive.</span></li><li><b>Cleaner combustion</b><span>Lower emissions and renewable fuel options.</span></li><li><b>Long burn time</b><span>Enjoy 8–24 hours of steady heat from one fill.</span></li></ul><a href="#siparis" className="text-link">Explore pellet heating <span>→</span></a></div></section>
