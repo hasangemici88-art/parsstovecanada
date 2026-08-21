@@ -17,3 +17,6 @@
 .product-thumbs{display:flex;gap:8px;padding:14px 20px;overflow-x:auto;background:#fff;border-bottom:1px solid #eee8df}
 .product-thumbs img{width:52px;height:52px;object-fit:cover;border-radius:4px;border:2px solid transparent;cursor:pointer;flex-shrink:0;background:#f6f2eb}
 .product-thumbs img.active{border-color:var(--orange)}
+
+/* Keep the hero image in the background so slide content stays visible. */
+.hero-slide>img{position:absolute;inset:0}
