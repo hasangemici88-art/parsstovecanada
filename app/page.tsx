@@ -21,9 +21,29 @@ const parsStove1Gallery = [
   "/products/pars-stove-1/photo-12.png",
 ];
 
-// The four models below only exist as placeholder listings on the source
-// site (no real specs, generic stock photos) — shown here as upcoming
-// additions to the lineup, not verified products. Do not add fake specs.
+// Petek / Akrep / Balkon — real photos + specs pulled from esrefsekerli.com
+// (a Turkish retailer of the same "Pars Pelet" stove line) on 2026-08-21.
+// The three models share one manufacturer FAQ describing family-wide
+// performance (heating area, burn rate, ash, venting) — that shared spec
+// is applied to all three since esrefsekerli's own copy describes it as
+// applying across "Pelet sobalarımız" (our stoves), not one specific SKU.
+// Do not invent a CAD price or a Canadian safety certification — neither
+// is confirmed, see the compliance note in the Canada-specific FAQ below.
+const parsPetekGallery = [
+  "/products/pars-petek/photo-01.png",
+  "/products/pars-petek/photo-02.png",
+  "/products/pars-petek/photo-03.png",
+];
+const parsAkrepGallery = [
+  "/products/pars-akrep/photo-01.jpg",
+  "/products/pars-akrep/photo-02.png",
+  "/products/pars-akrep/photo-03.jpg",
+];
+const parsBalkonGallery = [
+  "/products/pars-balkon/photo-01.jpeg",
+  "/products/pars-balkon/photo-02.jpeg",
+];
+
 const products = [
   {
     name: "Pars Classic Pellet Stove",
@@ -35,31 +55,31 @@ const products = [
     gallery: parsStove1Gallery,
   },
   {
-    name: "Pars Series II",
-    heat: "Specs coming soon",
-    area: "Details coming soon",
+    name: "Pars Petek Pellet Stove",
+    heat: "1–1.5 kg pellets/hr (16–24 kg over a 16-hr full burn)",
+    area: "320–750 sq. ft. (30–70 m²) at 8 ft. (2.5 m) ceiling height",
     price: "Contact us for pricing",
-    badge: "Coming Soon",
+    badge: "Indoor Pedestal Model",
     tone: "sand",
-    gallery: ["/products/demo-2/photo-01.jpg", "/products/demo-2/photo-02.jpg"],
+    gallery: parsPetekGallery,
   },
   {
-    name: "Pars Series III",
-    heat: "Specs coming soon",
-    area: "Details coming soon",
+    name: "Pars Akrep Pellet Stove",
+    heat: "1–1.5 kg pellets/hr (16–24 kg over a 16-hr full burn)",
+    area: "320–750 sq. ft. (30–70 m²) at 8 ft. (2.5 m) ceiling height",
     price: "Contact us for pricing",
-    badge: "Coming Soon",
+    badge: "Portable / Flat-Leg Stand",
     tone: "forest",
-    gallery: ["/products/demo-3/photo-01.jpg", "/products/demo-3/photo-02.jpg"],
+    gallery: parsAkrepGallery,
   },
   {
-    name: "Pars Series IV",
-    heat: "Specs coming soon",
-    area: "Details coming soon",
+    name: "Pars Balkon Fire Torch",
+    heat: "Compact outdoor unit — burn rate not published separately",
+    area: "Patio / balcony accent heat, not a whole-room heater",
     price: "Contact us for pricing",
-    badge: "Coming Soon",
+    badge: "Outdoor Only",
     tone: "graphite",
-    gallery: ["/products/demo-4/photo-01.jpg", "/products/demo-4/photo-02.jpg"],
+    gallery: parsBalkonGallery,
   },
   {
     name: "Pars Fuel Test Unit",
@@ -77,6 +97,8 @@ const faqs = [
   ["Is installation included?", "Standard installation options are shown on each product page. Any venting or electrical work is quoted clearly before your appointment."],
   ["How much fuel does a pellet stove use?", "Depending on the heat setting and insulation, typical consumption is approximately 0.6–2.2 kg of pellets per hour."],
   ["How long does delivery take?", "In-stock models typically ship within 3–7 business days in our Canadian service areas. Remote-area timing may vary."],
+  ["Are these stoves certified for indoor use in Canada?", "Certification status (CSA/ULC) for indoor installation has not been confirmed for these models. Contact us before planning an indoor install — a local inspector or installer can confirm what's required in your province."],
+  ["Do the stoves need a chimney or flue?", "Yes, for indoor use all models require an external vent pipe to carry combustion exhaust outside. The Balkon Fire Torch is an outdoor-only accent unit and does not require venting."],
 ];
 
 function Flame() {
