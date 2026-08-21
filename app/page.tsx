@@ -1,6 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const heroSlides = [
+  {
+    image: "/parsstove-hero.png",
+    alt: "Pars pellet stove warming a mountain home in winter",
+    eyebrow: "MADE FOR CANADIAN WINTERS",
+    title: "Natural warmth.",
+    accent: "Smarter comfort.",
+    copy: "Heat your home effortlessly with a high-efficiency pellet stove. Choose online, get it delivered, and have it installed by a qualified local professional.",
+    primary: "Find My Stove",
+    secondary: "How it works",
+  },
+  {
+    image: "/parsstove-hero.png",
+    alt: "Warm Canadian mountain home with an efficient Pars stove",
+    eyebrow: "EFFICIENCY MEETS COMFORT",
+    title: "Winter outside.",
+    accent: "Warmth within.",
+    copy: "Steady, efficient heat without the work of a traditional wood fire. Discover a cleaner way to keep every winter evening beautifully comfortable.",
+    primary: "Explore Models",
+    secondary: "Why Pars?",
+  },
+] as const;
 
 const products = [
   { name: "Pars P8 Compact", heat: "27,000 BTU", area: "650–970 sq. ft.", price: "$3,499 CAD", badge: "Best Seller", tone: "graphite" },
@@ -23,6 +46,81 @@ function Stove({ tone = "graphite" }: { tone?: string }) {
   return <div className={`stove ${tone}`} aria-hidden="true"><div className="pipe"/><div className="stove-top"/><div className="stove-body"><div className="window"><Flame/><span className="ember e1"/><span className="ember e2"/></div><div className="control"/></div><div className="feet"><i/><i/></div></div>;
 }
 
+function HeroCarousel() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = window.setInterval(() => setActiveSlide((current) => (current + 1) % heroSlides.length), 7000);
+    return () => window.clearInterval(timer);
+  }, [paused]);
+
+  const goTo = (index: number) => setActiveSlide((index + heroSlides.length) % heroSlides.length);
+
+  return (
+    <section
+      className="hero-carousel"
+      aria-roledescription="carousel"
+      aria-label="Featured Pars Stove highlights"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") goTo(activeSlide - 1);
+        if (event.key === "ArrowRight") goTo(activeSlide + 1);
+      }}
+    >
+      <div className="hero-slides" aria-live="polite">
+        {heroSlides.map((slide, index) => (
+          <article
+            className={`hero-slide ${index === activeSlide ? "is-active" : ""}`}
+            aria-hidden={index !== activeSlide}
+            key={`${slide.title}-${slide.accent}`}
+          >
+            <img src={slide.image} alt={index === activeSlide ? slide.alt : ""} />
+            <div className="hero-shade" />
+            <div className="hero-copy">
+              <div className="eyebrow"><span />{slide.eyebrow}</div>
+              <h1>{slide.title}<br/><em>{slide.accent}</em></h1>
+              <p>{slide.copy}</p>
+              <div className="hero-buttons">
+                <a className="btn primary" href="#urunler">{slide.primary}<span>→</span></a>
+                <a className="btn secondary" href="#neden">{slide.secondary}<span className="play">▶</span></a>
+              </div>
+              <div className="hero-proof" aria-label="Customer trust highlights">
+                <div><b>4.9</b><span className="stars">★★★★★</span><small>1,200+ happy homeowners</small></div>
+                <i />
+                <div><b>2 years</b><small>Manufacturer warranty</small></div>
+                <i />
+                <div><b>92%+</b><small>High efficiency</small></div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <button className="hero-arrow prev" onClick={() => goTo(activeSlide - 1)} aria-label="Previous slide">←</button>
+      <button className="hero-arrow next" onClick={() => goTo(activeSlide + 1)} aria-label="Next slide">→</button>
+      <div className="hero-dots" role="tablist" aria-label="Choose hero slide">
+        {heroSlides.map((slide, index) => (
+          <button
+            key={slide.title}
+            className={index === activeSlide ? "active" : ""}
+            onClick={() => goTo(index)}
+            role="tab"
+            aria-selected={index === activeSlide}
+            aria-label={`Show slide ${index + 1}: ${slide.title} ${slide.accent}`}
+          ><span /></button>
+        ))}
+      </div>
+      <button className="hero-pause" onClick={() => setPaused((value) => !value)} aria-label={paused ? "Resume automatic slides" : "Pause automatic slides"}>{paused ? "▶" : "Ⅱ"}</button>
+    </section>
+  );
+}
+
 export default function Home() {
   const [menu, setMenu] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
@@ -39,21 +137,7 @@ export default function Home() {
         <div className="header-actions"><button className="cart" aria-label={`Cart, ${cart} items`}>Cart <span>{cart}</span></button><a className="header-cta" href="#urunler">Shop Stoves</a><button className="menu" onClick={() => setMenu(!menu)} aria-label="Open menu" aria-expanded={menu}>☰</button></div>
       </header>
 
-      <section className="hero">
-        <div className="hero-copy">
-          <div className="eyebrow"><span>●</span> MADE FOR CANADIAN WINTERS</div>
-          <h1>Natural warmth.<br/><em>Smarter comfort.</em></h1>
-          <p>Heat your home effortlessly with a high-efficiency pellet stove. Choose online, get it delivered, and have it installed by a qualified local professional.</p>
-          <div className="hero-buttons"><a className="btn primary" href="#urunler">Find My Stove <span>→</span></a><a className="btn secondary" href="#neden">How it works <span>▶</span></a></div>
-          <div className="hero-proof"><div><b>4.9</b><span className="stars">★★★★★</span><small>1,200+ happy homeowners</small></div><i/><div><b>2 years</b><small>Manufacturer warranty</small></div><i/><div><b>92%+</b><small>High efficiency</small></div></div>
-        </div>
-        <div className="hero-visual">
-          <div className="warm-orb"/><div className="floor-shadow"/><Stove/>
-          <div className="float-card fc1"><span>♨</span><div><b>High Efficiency</b><small>More heat from less fuel</small></div></div>
-          <div className="float-card fc2"><span>✓</span><div><b>Qualified Installation</b><small>Trusted local professionals</small></div></div>
-          <span className="spark s1">✦</span><span className="spark s2">·</span><span className="spark s3">✦</span>
-        </div>
-      </section>
+      <HeroCarousel />
 
       <section className="categories">
         <div className="section-intro"><div><span className="kicker">BUILT AROUND YOUR HOME</span><h2>There’s a <em>Pars</em> for every space.</h2></div><p>High-efficiency models for everything from compact cabins and condos to large Canadian homes.</p></div>
