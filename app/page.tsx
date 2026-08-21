@@ -7,21 +7,21 @@ const heroSlides = [
     image: "/parsstove-hero.png",
     alt: "Pars pellet stove warming a mountain home in winter",
     eyebrow: "MADE FOR CANADIAN WINTERS",
-    title: "Natural warmth.",
-    accent: "Smarter comfort.",
+    title: "Pre-order now.",
+    accent: "Be ready for winter.",
     copy: "Heat your home effortlessly with a high-efficiency pellet stove. Choose online, get it delivered, and have it installed by a qualified local professional.",
-    primary: "Find My Stove",
-    secondary: "How it works",
+    primary: "Products",
+    secondary: "Contact Us",
   },
   {
     image: "/parsstove-hero.png",
     alt: "Warm Canadian mountain home with an efficient Pars stove",
     eyebrow: "EFFICIENCY MEETS COMFORT",
-    title: "Winter outside.",
-    accent: "Warmth within.",
+    title: "Pre-order now.",
+    accent: "Warmth is on its way.",
     copy: "Steady, efficient heat without the work of a traditional wood fire. Discover a cleaner way to keep every winter evening beautifully comfortable.",
-    primary: "Explore Models",
-    secondary: "Why Pars?",
+    primary: "Products",
+    secondary: "Contact Us",
   },
 ] as const;
 
@@ -89,7 +89,7 @@ function HeroCarousel() {
               <p>{slide.copy}</p>
               <div className="hero-buttons">
                 <a className="btn primary" href="#urunler">{slide.primary}<span>→</span></a>
-                <a className="btn secondary" href="#neden">{slide.secondary}<span className="play">▶</span></a>
+                <a className="btn secondary" href="#final-contact">{slide.secondary}<span>→</span></a>
               </div>
               <div className="hero-proof" aria-label="Customer trust highlights">
                 <div><b>4.9</b><span className="stars">★★★★★</span><small>1,200+ happy homeowners</small></div>
