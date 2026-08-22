@@ -14,8 +14,8 @@ const heroSlides = [
     secondary: "Contact Us",
   },
   {
-    image: "/parsstove-hero.png",
-    alt: "Warm Canadian mountain home with an efficient Pars stove",
+    image: "/pars-factory-line.jpeg",
+    alt: "A production line of Pars pellet stoves burning during quality testing",
     eyebrow: "EFFICIENCY MEETS COMFORT",
     title: "Pre-order now.",
     accent: "Warmth is on its way.",
@@ -164,13 +164,12 @@ function HeroCarousel() {
       }}
     >
       <div className="hero-slides" aria-live="polite">
-        {heroSlides.map((slide, index) => (
+        {heroSlides.map((slide, index) => index === activeSlide && (
           <article
-            className={`hero-slide ${index === activeSlide ? "is-active" : ""}`}
-            aria-hidden={index !== activeSlide}
+            className="hero-slide is-active"
             key={`${slide.title}-${slide.accent}`}
           >
-            <img src={slide.image} alt={index === activeSlide ? slide.alt : ""} />
+            <img src={slide.image} alt={slide.alt} width="1920" height="1080" />
             <div className="hero-shade" />
             <div className="hero-copy">
               <div className="eyebrow"><span />{slide.eyebrow}</div>
@@ -219,15 +218,15 @@ function ProductCard({ p, cart, setCart }: { p: Product; cart: number; setCart: 
       <div className="product-image">
         <span className="badge">{p.badge}</span>
         <button aria-label={`Add ${p.name} to favourites`}>♡</button>
-        <img src={activeImg} alt={p.name} className="main-photo" />
+        <img src={activeImg} alt={p.name} className="main-photo" width="1200" height="900" />
       </div>
-      {p.gallery.length > 1 && (
-        <div className="product-thumbs">
+      <div className="product-thumbs" aria-label={`${p.name} image gallery`}>
           {p.gallery.map((src, i) => (
-            <img key={src} src={src} alt={`${p.name} view ${i + 1}`} className={src === activeImg ? "active" : ""} onClick={() => setActiveImg(src)} />
+            <button key={src} type="button" className={src === activeImg ? "active" : ""} onClick={() => setActiveImg(src)} aria-label={`Show ${p.name} view ${i + 1}`} aria-pressed={src === activeImg}>
+              <img src={src} alt="" width="96" height="96" />
+            </button>
           ))}
-        </div>
-      )}
+      </div>
       <div className="product-info">
         <div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div>
         <h3>{p.name}</h3>
