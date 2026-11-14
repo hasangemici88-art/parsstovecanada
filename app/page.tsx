@@ -72,7 +72,7 @@ const products = [
     name: "Pars Classic Pellet Stove",
     heat: "1–1.5 kg pellets/hr",
     area: "320–750 sq. ft. (30–70 m²)",
-    price: "$1,999 USD",
+    price: "CA$1,999",
     badge: "Flagship Model",
     tone: "graphite",
     gallery: parsStove1Gallery,
@@ -81,7 +81,7 @@ const products = [
     name: "Pars Petek Pellet Stove",
     heat: "1–1.5 kg pellets/hr (16–24 kg over a 16-hr full burn)",
     area: "320–750 sq. ft. (30–70 m²) at 8 ft. (2.5 m) ceiling height",
-    price: "$1,999 USD",
+    price: "CA$1,999",
     badge: "Indoor Pedestal Model",
     tone: "sand",
     gallery: parsPetekGallery,
@@ -90,7 +90,7 @@ const products = [
     name: "Pars Akrep Pellet Stove",
     heat: "1–1.5 kg pellets/hr (16–24 kg over a 16-hr full burn)",
     area: "320–750 sq. ft. (30–70 m²) at 8 ft. (2.5 m) ceiling height",
-    price: "$1,999 USD",
+    price: "CA$1,999",
     badge: "Portable / Flat-Leg Stand",
     tone: "forest",
     gallery: parsAkrepGallery,
@@ -99,7 +99,7 @@ const products = [
     name: "Pars Balkon Fire Torch",
     heat: "Compact outdoor unit — burn rate not published separately",
     area: "Patio / balcony accent heat, not a whole-room heater",
-    price: "$1,999 USD",
+    price: "CA$1,999",
     badge: "Outdoor Only",
     tone: "graphite",
     gallery: parsBalkonGallery,
@@ -108,7 +108,7 @@ const products = [
     name: "Pars Fuel Test Unit",
     heat: "Specs coming soon",
     area: "Details coming soon",
-    price: "$1,999 USD",
+    price: "CA$1,999",
     badge: "Coming Soon",
     tone: "sand",
     gallery: ["/products/yakit-test/photo-01.jpg"],
@@ -231,7 +231,7 @@ function ProductCard({ p, cart, setCart }: { p: Product; cart: number; setCart: 
         <div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div>
         <h3>{p.name}</h3>
         <div className="price-row">
-          <div className="product-pricing"><small className="sale-label">10% OFF</small><span className="price-pair"><del>{p.price}</del><b>$1,799 USD</b></span></div>
+          <div className="product-pricing"><small className="sale-label">10% OFF</small><span className="price-pair"><del>{p.price}</del><b>CA$1,799</b></span></div>
           <button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button>
         </div>
       </div>

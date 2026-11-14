@@ -37,5 +37,12 @@
 .sale-label{display:inline-flex;width:max-content;margin-bottom:5px;padding:5px 8px;border-radius:999px;background:#fff0e7;color:var(--deep)!important;font-size:9px!important;font-weight:900;letter-spacing:.12em}
 .price-row b{font-size:19px}
 .product-pricing{gap:5px}.price-pair{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}.price-pair del{color:#8d857b;font-size:13px;font-weight:700;text-decoration-color:#d92f20;text-decoration-thickness:2px}.price-pair b{color:var(--deep);white-space:nowrap}
+header nav{gap:38px;font-size:15px;font-weight:800;letter-spacing:.01em}
+header nav a{position:relative;padding:12px 2px;transition:color .22s ease,transform .22s ease}
+header nav a:after{content:"";position:absolute;left:2px;right:2px;bottom:5px;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:right;transition:transform .24s ease}
+header nav a:hover,header nav a:focus-visible{color:var(--orange);transform:translateY(-1px)}
+header nav a:hover:after,header nav a:focus-visible:after{transform:scaleX(1);transform-origin:left}
+header nav a:focus-visible{outline:2px solid rgba(239,100,29,.35);outline-offset:4px;border-radius:2px}
+@media(max-width:900px){header nav{font-size:15px;font-weight:800;gap:12px}header nav a{padding:10px 2px}}
 @media(max-width:900px){.benefit-visual{min-height:620px}.benefit-photo{object-position:center 55%}}
 @media(max-width:520px){.benefit-visual{min-height:460px}.benefit-photo{object-position:center}.saving{left:24px;bottom:24px}}
