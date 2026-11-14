@@ -72,7 +72,7 @@ const products = [
     name: "Pars Classic Pellet Stove",
     heat: "1–1.5 kg pellets/hr",
     area: "320–750 sq. ft. (30–70 m²)",
-    price: "Contact us for pricing",
+    price: "$1,999 USD",
     badge: "Flagship Model",
     tone: "graphite",
     gallery: parsStove1Gallery,
@@ -81,7 +81,7 @@ const products = [
     name: "Pars Petek Pellet Stove",
     heat: "1–1.5 kg pellets/hr (16–24 kg over a 16-hr full burn)",
     area: "320–750 sq. ft. (30–70 m²) at 8 ft. (2.5 m) ceiling height",
-    price: "Contact us for pricing",
+    price: "$1,999 USD",
     badge: "Indoor Pedestal Model",
     tone: "sand",
     gallery: parsPetekGallery,
@@ -90,7 +90,7 @@ const products = [
     name: "Pars Akrep Pellet Stove",
     heat: "1–1.5 kg pellets/hr (16–24 kg over a 16-hr full burn)",
     area: "320–750 sq. ft. (30–70 m²) at 8 ft. (2.5 m) ceiling height",
-    price: "Contact us for pricing",
+    price: "$1,999 USD",
     badge: "Portable / Flat-Leg Stand",
     tone: "forest",
     gallery: parsAkrepGallery,
@@ -99,7 +99,7 @@ const products = [
     name: "Pars Balkon Fire Torch",
     heat: "Compact outdoor unit — burn rate not published separately",
     area: "Patio / balcony accent heat, not a whole-room heater",
-    price: "Contact us for pricing",
+    price: "$1,999 USD",
     badge: "Outdoor Only",
     tone: "graphite",
     gallery: parsBalkonGallery,
@@ -108,7 +108,7 @@ const products = [
     name: "Pars Fuel Test Unit",
     heat: "Specs coming soon",
     area: "Details coming soon",
-    price: "Contact us for pricing",
+    price: "$1,999 USD",
     badge: "Coming Soon",
     tone: "sand",
     gallery: ["/products/yakit-test/photo-01.jpg"],
@@ -231,7 +231,7 @@ function ProductCard({ p, cart, setCart }: { p: Product; cart: number; setCart: 
         <div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div>
         <h3>{p.name}</h3>
         <div className="price-row">
-          <div><small>Starting at</small><b>{p.price}</b></div>
+          <div><small className="sale-label">10% OFF</small><b>{p.price}</b></div>
           <button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button>
         </div>
       </div>
@@ -267,7 +267,7 @@ export default function Home() {
         <div className="product-grid">{products.map((p) => <ProductCard key={p.name} p={p} cart={cart} setCart={setCart} />)}</div>
       </section>
 
-      <section className="benefits" id="neden"><div className="benefit-visual"><div className="lounge"><span className="plant">♧</span><div className="side-table"/><Stove tone="sand"/></div><div className="saving"><b>Up to 35%</b><span>fuel savings</span></div></div><div className="benefit-copy"><span className="kicker">WHY PELLET?</span><h2>A smarter way<br/><em>to stay warm.</em></h2><p>We bring together the warmth of a wood stove and the ease of modern technology. Simply set your preferred temperature.</p><ul><li><b>Automatic operation</b><span>Schedule it so your home is warm before you arrive.</span></li><li><b>Cleaner combustion</b><span>Lower emissions and renewable fuel options.</span></li><li><b>Long burn time</b><span>Enjoy 8–24 hours of steady heat from one fill.</span></li></ul><a href="#siparis" className="text-link">Explore pellet heating <span>→</span></a></div></section>
+      <section className="benefits" id="neden"><div className="benefit-visual"><img className="benefit-photo" src="/pars-factory-line.jpeg" alt="Pars pellet stoves burning during final production testing" width="2200" height="1650"/><div className="benefit-photo-shade"/><div className="saving"><b>Up to 35%</b><span>fuel savings</span></div></div><div className="benefit-copy"><span className="kicker">WHY PELLET?</span><h2>A smarter way<br/><em>to stay warm.</em></h2><p>We bring together the warmth of a wood stove and the ease of modern technology. Simply set your preferred temperature.</p><ul><li><b>Automatic operation</b><span>Schedule it so your home is warm before you arrive.</span></li><li><b>Cleaner combustion</b><span>Lower emissions and renewable fuel options.</span></li><li><b>Long burn time</b><span>Enjoy 8–24 hours of steady heat from one fill.</span></li></ul><a href="#siparis" className="text-link">Explore pellet heating <span>→</span></a></div></section>
 
       <section className="steps" id="siparis"><span className="kicker">THREE EASY STEPS</span><h2>Your path to warmer winters</h2><div className="step-grid"><article><b>01</b><span>▤</span><h3>Choose your model</h3><p>Find the right output for your home or speak with our heating team.</p></article><div className="step-line">→</div><article><b>02</b><span>▣</span><h3>Order with confidence</h3><p>Use secure checkout and flexible Canadian financing options.</p></article><div className="step-line">→</div><article><b>03</b><span>⚙</span><h3>Install and enjoy</h3><p>A qualified professional completes installation to local requirements.</p></article></div></section>
 
