@@ -231,7 +231,7 @@ function ProductCard({ p, cart, setCart }: { p: Product; cart: number; setCart: 
         <div className="spec"><span>{p.heat}</span><i/> <span>{p.area}</span></div>
         <h3>{p.name}</h3>
         <div className="price-row">
-          <div><small className="sale-label">10% OFF</small><b>{p.price}</b></div>
+          <div className="product-pricing"><small className="sale-label">10% OFF</small><span className="price-pair"><del>{p.price}</del><b>$1,799 USD</b></span></div>
           <button onClick={() => setCart(cart + 1)} aria-label={`Add ${p.name} to cart`}>Add to Cart</button>
         </div>
       </div>
